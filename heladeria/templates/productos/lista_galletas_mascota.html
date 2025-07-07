@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>🍪 Galletas para Mascotas</h1>
+<div class="galletas">
+  {% for galleta in galletas %}
+    <div class="card">
+      {% if galleta.imagen %}
+        <img src="{{ galleta.imagen.url }}" alt="{{ galleta.sabor }}">
+      {% endif %}
+      <h2>Galleta de {{ galleta.sabor }}</h2>
+      <p>${{ galleta.precio }}</p>
+      {% if galleta.ingredientes %}<p>{{ galleta.ingredientes }}</p>{% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

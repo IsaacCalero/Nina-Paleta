@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Barbacoa</h1>
+<div class="barbacoa">
+  {% for b in platos_bbq %}
+    <div class="card">
+      {% if b.imagen %}
+        <img src="{{ b.imagen.url }}" alt="{{ b.nombre }}">
+      {% endif %}
+      <h2>{{ b.nombre }}</h2>
+      <p>{{ b.descripcion }}</p>
+      <p>Carne: {{ b.peso_carne }}g</p>
+      {% if b.incluye_papas %}
+        <p>🍟 Con papas</p>
+      {% endif %}
+      {% if b.incluye_ensalada %}
+        <p>🥗 Con ensalada</p>
+      {% endif %}
+      <p><strong>${{ b.precio }}</strong></p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
+

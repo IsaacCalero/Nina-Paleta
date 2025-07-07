@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <title>Nina Paleta</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/main.js' %}"></script>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="{% url 'inicio' %}">
+        <img src="{% static 'img/logo_nina_paleta.png' %}" alt="Logo Nina Paleta" class="logo-global">
+      </a>
+    </div>
+
+    <nav class="menu-principal">
+      <a href="{% url 'lista_sabores' %}">Sabores</a>
+      <a href="{% url 'mascopaletas' %}">Mascotas</a>
+      <a href="{% url 'lista_picaditas' %}">Picaditas</a>
+      <a href="{% url 'lista_sanduches' %}">Sánduches</a>
+      <a href="{% url 'lista_barbacoa' %}">Barbacoa</a>
+      <a href="{% url 'lista_licores' %}">Licores</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+<footer class="pie-pagina">
+  <div class="info-contacto">
+    <p>📞 0999-123-456</p>
+    <p>📍 Machachi </p>
+    <p>✉️ contacto@ninapaleta.com</p>
+  </div>
+
+  <div class="redes-sociales">
+    <a href="https://www.instagram.com/ninapaleta" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/ninapaleta" target="_blank">Facebook</a>
+    <a href="https://wa.me/593999123456" target="_blank">WhatsApp</a>
+  </div>
+
+  <p class="marca">🐾 Hecho con amor artesanal. © Nina Paleta</p>
+</footer>
+
+</body>
+</html>

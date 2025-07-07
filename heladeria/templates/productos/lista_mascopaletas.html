@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>🐾 Paletas para Mascotas</h1>
+<div class="mascopaletas">
+  {% for item in mascopaletas %}
+    <div class="card">
+      {% if item.imagen %}
+        <img src="{{ item.imagen.url }}" alt="{{ item.nombre }}">
+      {% endif %}
+      <h2>{{ item.nombre }} ({{ item.tamano }})</h2>
+      <p>${{ item.precio }}</p>
+      {% if item.descripcion %}<p>{{ item.descripcion }}</p>{% endif %}
+      {% if item.sin_lactosa %}<p>✅ Sin lactosa</p>{% endif %}
+      {% if item.sin_azucar %}<p>✅ Sin azúcar</p>{% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

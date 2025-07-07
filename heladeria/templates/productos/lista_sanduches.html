@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>🥪 Sánduches</h1>
+<div class="sanduches">
+  {% for s in sanduches %}
+    <div class="card">
+      {% if s.imagen %}
+        <img src="{{ s.imagen.url }}" alt="{{ s.nombre }}">
+      {% endif %}
+      <h2>{{ s.nombre }}</h2>
+      <p>{{ s.descripcion }}</p>
+      {% if s.tipo_pan %}
+        <p>Pan: {{ s.tipo_pan }}</p>
+      {% endif %}
+      {% if s.incluye_papas %}
+        <p>🍟 Incluye papas</p>
+      {% endif %}
+      <p><strong>${{ s.precio }}</strong></p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

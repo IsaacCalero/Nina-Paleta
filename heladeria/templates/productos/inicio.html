@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="inicio-banner">
+  <h1>¡Bienvenid@ a Nina Paleta!</h1>
+  <p>Sabores artesanales con amor por las mascotas y la buena cocina</p>
+</div>
+
+<section class="historia-nina">
+  <h2>🍧 Nuestra Esencia</h2>
+  <p>
+    En Nina Paleta creemos que cada paleta es una historia. Mezclamos ingredientes naturales con cariño artesanal
+    para que humanos y mascotas disfruten juntos momentos dulces y memorables.
+  </p>
+  <p>
+    Desde Machachi ofrecemos opciones sin azúcar, sin lactosa y sabores únicos que abrazan el alma.
+  </p>
+</section>
+
+<section class="productos-destacados">
+  <h2>🛍️ Descubre Nuestros Sabores</h2>
+  <div class="grid-productos">
+    {% for producto in productos_destacados %}
+      <div class="card-producto">
+        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+        <h3>{{ producto.nombre }}</h3>
+        <p>{{ producto.descripcion|truncatewords:15 }}</p>
+        <span class="precio">💰 ${{ producto.precio }}</span>
+        <a href="{% url 'detalle_producto' producto.id %}" class="btn-comprar">Ver más</a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

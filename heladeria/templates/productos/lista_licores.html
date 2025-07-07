@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>🥃 Licores por Botella</h1>
+<div class="licores">
+  {% for l in licores %}
+    <div class="card">
+      {% if l.imagen %}
+        <img src="{{ l.imagen.url }}" alt="{{ l.nombre }}">
+      {% endif %}
+      <h2>{{ l.nombre }}</h2>
+      <p>Tipo: {{ l.tipo }}</p>
+      {% if l.descripcion %}
+        <p>{{ l.descripcion }}</p>
+      {% endif %}
+      {% if l.incluye %}
+        <p><em>Incluye:</em> {{ l.incluye }}</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>🍨 Sabores</h1>
+{% for categoria, sabores in sabores_por_categoria.items %}
+  <h2>{{ categoria }}</h2>
+  <div class="sabores">
+    {% for sabor in sabores %}
+      <div class="card">
+        {% if sabor.imagen %}
+          <img src="{{ sabor.imagen.url }}" alt="{{ sabor.nombre }}">
+        {% endif %}
+        <h3>{{ sabor.nombre }}</h3>
+        <p>${{ sabor.precio_pequeno }} – ${{ sabor.precio_grande }}</p>
+        {% if sabor.especial %}<p>🌟 Especial</p>{% endif %}
+        {% if sabor.temporada %}<p>🍃 Temporada</p>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endfor %}
+{% endblock %}

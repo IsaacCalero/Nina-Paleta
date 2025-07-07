@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>🌮 Picaditas Artesanales</h1>
+<div class="picaditas">
+  {% for item in picaditas %}
+    <div class="card">
+      {% if item.imagen %}
+        <img src="{{ item.imagen.url }}" alt="{{ item.nombre }}">
+      {% endif %}
+      <h2>{{ item.nombre }}</h2>
+      <p>{{ item.descripcion }}</p>
+      {% if item.porciones %}
+        <p><em>{{ item.porciones }}</em></p>
+      {% endif %}
+      <p><strong>${{ item.precio }}</strong></p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
