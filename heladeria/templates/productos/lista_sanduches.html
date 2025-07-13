@@ -1,22 +1,118 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h1>🥪 Sánduches</h1>
-<div class="sanduches">
-  {% for s in sanduches %}
-    <div class="card">
-      {% if s.imagen %}
-        <img src="{{ s.imagen.url }}" alt="{{ s.nombre }}">
-      {% endif %}
-      <h2>{{ s.nombre }}</h2>
-      <p>{{ s.descripcion }}</p>
-      {% if s.tipo_pan %}
-        <p>Pan: {{ s.tipo_pan }}</p>
-      {% endif %}
-      {% if s.incluye_papas %}
-        <p>🍟 Incluye papas</p>
-      {% endif %}
-      <p><strong>${{ s.precio }}</strong></p>
-    </div>
-  {% endfor %}
-</div>
+<h1>🥪 Sánduches y Barbacoa Artesanal</h1>
+
+<!-- Menú visual centrado -->
+<section class="menu-sanduches">
+  <h2>📖 Menú Artesanal</h2>
+  <p>Explora nuestros sánduches y delicias a la barbacoa en esta presentación gráfica:</p>
+  <div class="menu-img-container">
+    <img src="{% static 'img/menu_sanduches.jpg' %}" alt="Menú de Sánduches y Barbacoa" class="menu-img">
+  </div>
+</section>
+
+<!-- Sección de Sanduches -->
+<section class="grid-sanduches">
+  <div class="tarjeta-sanduche">
+    <h3>🌭 Choripán</h3>
+    <p>Pan Baguette con chorizo acompañado de pico de gallo.</p>
+    <p class="precio">$3.00</p>
+  </div>
+
+  <div class="tarjeta-sanduche">
+    <h3>🍟 Choripán con Papas</h3>
+    <p>Incluye papas fritas junto al clásico choripán artesanal.</p>
+    <p class="precio">$3.75</p>
+  </div>
+
+  <div class="tarjeta-sanduche">
+    <h3>🧀 Choripán con Queso y Chimichurri</h3>
+    <p>Queso mozzarella derretido, chimichurri casero y chorizo.</p>
+    <p class="precio">$4.00</p>
+  </div>
+
+  <div class="tarjeta-sanduche">
+    <h3>🍟🧀 Choripán con Queso y Papas</h3>
+    <p>La versión completa: chimichurri, queso derretido y papas fritas.</p>
+    <p class="precio">$4.75</p>
+  </div>
+
+  <div class="tarjeta-sanduche">
+    <h3>🥪 Jamón y Queso</h3>
+    <p>Con salsa de la casa, jamón de cerdo, queso holandés y vegetales.</p>
+    <p class="precio">$2.50</p>
+  </div>
+
+  <div class="tarjeta-sanduche">
+    <h3>🍔 Hamburguesa Simple</h3>
+    <p>140g de carne, tomate, lechuga, queso cheddar, incluye papas.</p>
+    <p class="precio">$5.00</p>
+  </div>
+
+  <div class="tarjeta-sanduche">
+    <h3>🍔🍔 Hamburguesa Doble</h3>
+    <p>280g de carne, doble queso cheddar, papas incluidas.</p>
+    <p class="precio">$6.50</p>
+  </div>
+
+  <div class="tarjeta-sanduche">
+    <h3>🍍 Hamburguesa Hawaiana</h3>
+    <p>Con piña asada, queso cheddar, papas incluidas.</p>
+    <p class="precio">$5.25</p>
+  </div>
+
+  <div class="tarjeta-sanduche">
+    <h3>🌭🍔 Hamburguesa con Chorizo</h3>
+    <p>Carne + chorizo + cheddar + vegetales + papas.</p>
+    <p class="precio">$6.50</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- Sección Barbacoa -->
+<section class="grid-barbacoa">
+  <h2>🔥 A la Barbacoa</h2>
+
+  <div class="tarjeta-barbacoa">
+    <h3>🍖 Costillas BBQ</h3>
+    <p>250g horneadas y ahumadas en salsa BBQ. Incluye papas fritas con orégano y ensalada.</p>
+    <p class="precio">$8.50</p>
+  </div>
+
+  <div class="tarjeta-barbacoa">
+    <h3>🐔 Alitas BBQ</h3>
+    <p>6 alitas horneadas en salsa BBQ. Incluye papas con orégano y ensalada.</p>
+    <p class="precio">$6.00</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- Sección Adicionales -->
+<section class="grid-adicionales">
+  <h2>🧂 Adicionales</h2>
+
+  <div class="tarjeta-adicional">
+    <h3>🍟 Papas Fritas</h3>
+    <p>$2.00</p>
+  </div>
+
+  <div class="tarjeta-adicional">
+    <h3>🥑 Guacamole</h3>
+    <p>$1.50</p>
+  </div>
+
+  <div class="tarjeta-adicional">
+    <h3>🌭 Chorizos</h3>
+    <p>$2.00</p>
+  </div>
+
+  <div class="tarjeta-adicional">
+    <h3>🧀 Queso Cheddar</h3>
+    <p>$1.25</p>
+  </div>
+</section>
 {% endblock %}

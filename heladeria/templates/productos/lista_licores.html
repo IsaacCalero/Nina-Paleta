@@ -1,21 +1,213 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h1>🥃 Licores por Botella</h1>
-<div class="licores">
-  {% for l in licores %}
-    <div class="card">
-      {% if l.imagen %}
-        <img src="{{ l.imagen.url }}" alt="{{ l.nombre }}">
-      {% endif %}
-      <h2>{{ l.nombre }}</h2>
-      <p>Tipo: {{ l.tipo }}</p>
-      {% if l.descripcion %}
-        <p>{{ l.descripcion }}</p>
-      {% endif %}
-      {% if l.incluye %}
-        <p><em>Incluye:</em> {{ l.incluye }}</p>
-      {% endif %}
-    </div>
-  {% endfor %}
-</div>
+<h1>🍹 Bebidas Artesanales</h1>
+<p>Explora nuestra carta con cócteles, cervezas, micheladas y bebidas suaves. Todo con ingredientes seleccionados y un toque refrescante de Nina Paleta.</p>
+
+<!-- Galería de menú -->
+<section class="galeria-bebidas">
+  <h2>📖 Menú Visual</h2>
+  <div class="grid-menu-bebidas">
+    <img src="{% static 'img/menu_bebidas_1.jpg' %}" alt="Cócteles y tragos">
+    <img src="{% static 'img/menu_bebidas_2.jpg' %}" alt="Cervezas artesanales">
+    <img src="{% static 'img/menu_bebidas_3.jpg' %}" alt="Sinners y comerciales">
+    <img src="{% static 'img/menu_bebidas_4.jpg' %}" alt="Micheladas y bebidas suaves">
+  </div>
+</section>
+
+<!-- Cócteles -->
+<section class="grid-bebidas">
+  <h2>🍸 Cócteles Artesanales</h2>
+
+  <div class="tarjeta-bebida">
+    <h3>Fernet con cola</h3>
+    <p>Refrescante y clásico argentino</p>
+    <p class="precio">$4.80</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Mojito de Maracuyá</h3>
+    <p>Ron blanco, maracuyá, limón y hierbabuena</p>
+    <p class="precio">$4.50</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Caipirinha de Fresa</h3>
+    <p>Cachaça, fresa natural y azúcar artesanal</p>
+    <p class="precio">$4.80</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Padrino</h3>
+    <p>Whisky escocés con crema</p>
+    <p class="precio">$4.80</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Ruleta de Shots</h3>
+    <p>Ideal para compartir en grupo 🎲</p>
+    <p class="precio">Desde $16.00</p>
+  </div>
+</section>
+
+<!-- Cervezas -->
+<section class="grid-bebidas">
+  <h2>🍺 Cervezas Artesanales</h2>
+
+  <div class="tarjeta-bebida">
+    <h3>La Santita Roja</h3>
+    <p>Lata 500ml · ABV 4.5% · IBU 15</p>
+    <p class="precio">$4.75</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Sinners IPA</h3>
+    <p>Lata 500ml · ABV 6.5% · IBU 60</p>
+    <p class="precio">$4.75</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Sample de Barril</h3>
+    <p>Degusta 4 cervezas · 100ml cada una</p>
+    <p class="precio">$4.50</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Artesanal 330ml</h3>
+    <p>Variedad rotativa</p>
+    <p class="precio">$3.50</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Artesanal 500ml</h3>
+    <p>Variedad rotativa</p>
+    <p class="precio">$5.50</p>
+  </div>
+</section>
+
+<!-- Micheladas -->
+<section class="grid-bebidas">
+  <h2>🌶️ Micheladas con Paleta</h2>
+
+  <div class="tarjeta-bebida">
+    <h3>Pilsener 330ml</h3>
+    <p>Con paleta de maracuyá con sal</p>
+    <p class="precio">$4.00</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Club 330ml</h3>
+    <p>Con paleta de mango y maracuyá</p>
+    <p class="precio">$4.25</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Stella Artois</h3>
+    <p>Con paleta de mango con sal</p>
+    <p class="precio">$4.50</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Modelo Negra</h3>
+    <p>Con paleta de chamoyada</p>
+    <p class="precio">$5.25</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Cerveza artesanal 330ml</h3>
+    <p>Con paleta a elección</p>
+    <p class="precio">$5.50</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Cerveza artesanal 500ml</h3>
+    <p>Con paleta a elección</p>
+    <p class="precio">$7.50</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Torre de Pilsener (2.5L)</h3>
+    <p>Ideal para compartir</p>
+    <p class="precio">$12.50</p>
+  </div>
+</section>
+
+<!-- Bebidas frías -->
+<section class="grid-bebidas">
+  <h2>🥤 Bebidas Frías</h2>
+
+  <div class="tarjeta-bebida">
+    <h3>Agua Natural</h3>
+    <p>Fresca y purificada</p>
+    <p class="precio">$1.25</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Agua Mineral con gas</h3>
+    <p>Con burbujas suaves</p>
+    <p class="precio">$1.50</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Gaseosa personal</h3>
+    <p>Coca-Cola, Sprite, Fanta</p>
+    <p class="precio">$1.25</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Té helado</h3>
+    <p>Fresa, Limón, Mandarina, Horchata...</p>
+    <p class="precio">$1.50</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Jugos naturales</h3>
+    <p>Fruta fresca exprimida</p>
+    <p class="precio">$1.75</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Limonada natural</h3>
+    <p>Refrescante y artesanal</p>
+    <p class="precio">$1.50</p>
+  </div>
+  <div class="tarjeta-bebida">
+    <h3>Milkshake</h3>
+    <p>Chocolate · Oreo · Café</p>
+    <p class="precio">$2.50</p>
+  </div>
+</section>
+<section class="grid-bebidas">
+  <h2>☕ Bebidas Calientes</h2>
+
+  <div class="tarjeta-bebida">
+    <h3>Espresso</h3>
+    <p>Café intenso y corto</p>
+    <p class="precio">$1.25</p>
+  </div>
+
+  <div class="tarjeta-bebida">
+    <h3>Americano</h3>
+    <p>Café suave al estilo clásico</p>
+    <p class="precio">$1.50</p>
+  </div>
+
+  <div class="tarjeta-bebida">
+    <h3>Americano + Leche</h3>
+    <p>Ideal para los que prefieren un toque cremoso</p>
+    <p class="precio">$1.50</p>
+  </div>
+
+  <div class="tarjeta-bebida">
+    <h3>Cappuccino</h3>
+    <p>Con leche espumada y un toque dulce</p>
+    <p class="precio">$2.00</p>
+  </div>
+
+  <div class="tarjeta-bebida">
+    <h3>Mocaccino</h3>
+    <p>Café con sabor a chocolate artesanal</p>
+    <p class="precio">$2.25</p>
+  </div>
+
+  <div class="tarjeta-bebida">
+    <h3>Café Helado</h3>
+    <p>Café frío con hielo, perfecto para días calurosos</p>
+    <p class="precio">$2.75</p>
+  </div>
+
+  <div class="tarjeta-bebida">
+    <h3>Agua Aromática</h3>
+    <p>Infusión de hierbas naturales</p>
+    <p class="precio">$1.25</p>
+  </div>
+
+  <div class="tarjeta-bebida">
+    <h3>Infusiones</h3>
+    <p>Frutos rojos · Frutas deshidratadas · De temporada</p>
+    <p class="precio">$3.00</p>
+  </div>
+</section>
 {% endblock %}

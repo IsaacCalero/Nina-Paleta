@@ -3,11 +3,26 @@
 
 {% block content %}
 
+<!-- Banner de bienvenida -->
 <div class="inicio-banner">
   <h1>¡Bienvenid@ a Nina Paleta!</h1>
   <p>Sabores artesanales con amor por las mascotas y la buena cocina</p>
 </div>
 
+<!-- Carrusel de imágenes -->
+<section class="carrusel-nina">
+  <div class="carrusel-imagenes">
+    <img src="{% static 'img/ref1.jpg' %}" alt="Paleta 1" class="imagen-carrusel active">
+    <img src="{% static 'img/bebida3.jpg' %}" alt="Paleta 2" class="imagen-carrusel">
+    <img src="{% static 'img/ref3.jpg' %}" alt="Paleta 3" class="imagen-carrusel">
+    <img src="{% static 'img/ref4.jpg' %}" alt="Paleta 4" class="imagen-carrusel">
+    <img src="{% static 'img/ref7.jpg' %}" alt="Paleta 5" class="imagen-carrusel">
+    <img src="{% static 'img/ref12.jpg' %}" alt="Paleta 6" class="imagen-carrusel">
+    <img src="{% static 'img/ref5.jpg' %}" alt="Paleta 7" class="imagen-carrusel">
+  </div>
+</section>
+
+<!-- Sección informativa -->
 <section class="historia-nina">
   <h2>🍧 Nuestra Esencia</h2>
   <p>
@@ -19,6 +34,7 @@
   </p>
 </section>
 
+<!-- Sección comercial -->
 <section class="productos-destacados">
   <h2>🛍️ Descubre Nuestros Sabores</h2>
   <div class="grid-productos">
@@ -32,6 +48,51 @@
       </div>
     {% endfor %}
   </div>
+</section>
+
+<!-- Sección: ¿Quiénes somos? -->
+<section class="quienes-somos">
+  <h2>🌿 ¿Quiénes Somos?</h2>
+  <p>
+    Somos la primera heladería artesanal sostenible del Ecuador, nacida en Machachi en 2018. Elaboramos paletas 100% naturales,
+    sin preservantes ni colorantes, hechas con energía solar y mucha pasión.
+  </p>
+  <p>
+    Contamos con más de 44 sabores únicos — desde paletas saladas para cerveza hasta “Espanto-Paletas” por Halloween. Nuestras famosas
+    <strong>Mascopaletas</strong> permiten que incluso los perritos disfruten momentos dulces.
+  </p>
+</section>
+
+<!-- Sección: Sabores Estrella -->
+<section class="sabores-destacados">
+  <h2>🍧 Sabores Estrella</h2>
+  <div class="grid-sabores">
+    <div class="tarjeta-sabor">
+      <img src="{% static 'img/mortiño.jpg' %}" alt="Cheesecake de Mortiño">
+      <h3>Cheesecake de Mortiño</h3>
+      <p>Sabor andino, cremoso y lleno de identidad local.</p>
+    </div>
+    <div class="tarjeta-sabor">
+      <img src="{% static 'img/ref13.jpg' %}" alt="Mascopaleta">
+      <h3>Mascopaleta</h3>
+      <p>Formulada especialmente para perritos. ¡Ellos también disfrutan!</p>
+    </div>
+    <div class="tarjeta-sabor">
+      <img src="{% static 'img/canelazo.jpg' %}" alt="Canelazo">
+      <h3>Canelazo</h3>
+      <p>Inspirado en las Fiestas de Quito. Tradición hecha paleta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Sección: Historia del Emprendimiento -->
+<section class="historia-karla">
+  <h2>👩‍🍳 Nuestra Historia</h2>
+  <p>
+    Nina Paleta nace el 2 de noviembre de 2018 con el deseo de Karla Campaña de ofrecer un helado distinto:
+    artesanal, sano y con identidad ecuatoriana. Desde Machachi, este sueño se convirtió en una experiencia culinaria que celebra
+    a los niños, las fiestas populares y también a nuestros peludos favoritos.
+  </p>
 </section>
 
 {% endblock %}

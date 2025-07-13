@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="registro-artesanal">
+  <h2>✨ Crea tu cuenta y empieza tu aventura de sabores</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="campo-form">
+      <label for="id_username">Usuario:</label>
+      {{ form.username }}
+    </div>
+
+    <div class="campo-form">
+      <label for="id_password1">Contraseña:</label>
+      {{ form.password1 }}
+    </div>
+
+    <div class="campo-form">
+      <label for="id_password2">Confirmar contraseña:</label>
+      {{ form.password2 }}
+    </div>
+
+    <button type="submit" class="btn-login">Crear cuenta 🍨</button>
+  </form>
+
+  <p class="texto-info">¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a> 🍓</p>
+</section>
+{% endblock %}

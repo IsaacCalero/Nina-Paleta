@@ -1,19 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h1>🌮 Picaditas Artesanales</h1>
-<div class="picaditas">
-  {% for item in picaditas %}
-    <div class="card">
-      {% if item.imagen %}
-        <img src="{{ item.imagen.url }}" alt="{{ item.nombre }}">
-      {% endif %}
-      <h2>{{ item.nombre }}</h2>
-      <p>{{ item.descripcion }}</p>
-      {% if item.porciones %}
-        <p><em>{{ item.porciones }}</em></p>
-      {% endif %}
-      <p><strong>${{ item.precio }}</strong></p>
-    </div>
-  {% endfor %}
-</div>
+<h1>🍽️ Picaditas Artesanales</h1>
+
+<!-- Menú visual centrado -->
+<section class="menu-picaditas">
+  <h2> Menú: </h2>
+  <p>Descubre nuestras picaditas especiales en esta presentación gráfica:</p>
+  <div class="menu-img-container">
+    <img src="{% static 'img/menu_picaditas.jpg' %}" alt="Menú de Picaditas" class="menu-img">
+  </div>
+</section>
+
+<!-- Catálogo de picaditas -->
+<section class="grid-picaditas">
+  <div class="tarjeta-picadita">
+    <h2>🌭 Choripapa</h2>
+    <p>Porción de papas con chorizo en rodajas, acompañada de chimichurri y pico de gallo.</p>
+    <p class="precio">$4.50</p>
+  </div>
+
+  <div class="tarjeta-picadita">
+    <h2>🧀 Nachos con Queso</h2>
+    <p>Totopos mexicanos con queso mozzarella derretido, salsa cheddar y/o guacamole de la casa.</p>
+    <p class="precio">$5.40</p>
+  </div>
+
+  <div class="tarjeta-picadita">
+    <h2>🌶️ Nachos con Chorizo</h2>
+    <p>Totopos mexicanos con queso mozzarella derretido, porción de chorizo, acompañado de guacamole y pico de gallo.</p>
+    <p class="precio">$6.80</p>
+  </div>
+
+  <div class="tarjeta-picadita">
+    <h2>🇲🇽 Copa Nina Mex</h2>
+    <p>Totopos con frijol cocinado, queso mozzarella derretido, guacamole, porción de castilla, decorado con pico de gallo. Ideal para 3 personas.</p>
+    <p class="precio">$8.80</p>
+  </div>
+</section>
 {% endblock %}

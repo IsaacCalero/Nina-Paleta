@@ -11,21 +11,52 @@
 
 <body>
   <header>
+  <div class="header-superior">
     <div class="logo-container">
       <a href="{% url 'inicio' %}">
-        <img src="{% static 'img/logo_nina_paleta.png' %}" alt="Logo Nina Paleta" class="logo-global">
+        <img src="{% static 'img/logo_nina.png' %}" alt="Logo Nina Paleta" class="logo-global">
       </a>
     </div>
 
-    <nav class="menu-principal">
-      <a href="{% url 'lista_sabores' %}">Sabores</a>
-      <a href="{% url 'mascopaletas' %}">Mascotas</a>
-      <a href="{% url 'lista_picaditas' %}">Picaditas</a>
-      <a href="{% url 'lista_sanduches' %}">Sánduches</a>
-      <a href="{% url 'lista_barbacoa' %}">Barbacoa</a>
-      <a href="{% url 'lista_licores' %}">Licores</a>
-    </nav>
-  </header>
+    <div class="botones-superior">
+      {% if user.is_authenticated %}
+        <span class="bienvenida">👋 Hola, {{ user.username }}</span>
+        <a href="{% url 'ver_carrito' %}" class="carrito-boton">
+          <img src="{% static 'img/carrito.png' %}" alt="Carrito" class="icono-carrito">
+          Carrito {% if carrito %}({{ carrito.items.count }}){% endif %}
+        </a>
+        <a href="{% url 'cerrar_sesion' %}" class="cerrar-sesion-boton">Cerrar sesión</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="btn-sesion">Iniciar sesión</a>
+        <a href="{% url 'registro' %}" class="btn-sesion">Registrarse</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="seccion-destacada">
+    <h2 class="titulo-menu">🍴 Elige tu experiencia artesanal favorita</h2>
+
+    <div class="menu-enlaces-libre">
+      <a href="{% url 'lista_sabores' %}" class="tarjeta-flotante">
+        <img src="{% static 'img/icons/paleta.png' %}" alt="Icono Helado" class="icono-boton">
+        Helados
+      </a>
+      <a href="{% url 'lista_picaditas' %}" class="tarjeta-flotante">
+        <img src="{% static 'img/icons/nachos.png' %}" alt="Icono Picaditas" class="icono-boton">
+        Picaditas
+      </a>
+      <a href="{% url 'lista_sanduches' %}" class="tarjeta-flotante">
+        <img src="{% static 'img/icons/sandwich.png' %}" alt="Icono Sánduches" class="icono-boton">
+        Sánduches y BBQ
+      </a>
+      <a href="{% url 'lista_licores' %}" class="tarjeta-flotante">
+        <img src="{% static 'img/icons/bebida.png' %}" alt="Icono Bebidas" class="icono-boton">
+        Bebidas
+      </a>
+    </div>
+  </div>
+</header>
+
 
   <main>
     {% block content %}
@@ -33,19 +64,36 @@
   </main>
 
 <footer class="pie-pagina">
-  <div class="info-contacto">
-    <p>📞 0999-123-456</p>
-    <p>📍 Machachi </p>
-    <p>✉️ contacto@ninapaleta.com</p>
+  <div class="footer-distribucion">
+    
+    <!-- 📞 Contacto -->
+    <div class="footer-columna">
+      <h4> 📞 Contacto</h4>
+      <p><a href="tel:+593988272737">0988272737</a></p>
+      <p><a href="mailto:heladerianinapaleta@gmail.com">heladerianinapaleta@gmail.com</a></p>
+    </div>
+
+    <!-- 📍 Ubicación + Horario -->
+    <div class="footer-columna">
+      <h4> 📍 Ubicación</h4>
+      <p>Machachi — Atahualpa E1-70 y Nueva España</p>
+      <p>(a 2 cuadras de la Unidad Educativa Machachi)</p>
+      <h4>Horario</h4>
+      <p>Dom–Mié: 9:00 am – 10:00 pm<br>Jue–Sáb: 9:00 am – 12:00 am</p>
+    </div>
+
+    <!-- 🌐 Redes Sociales -->
+    <div class="footer-columna">
+      <h4>🌐 Redes</h4>
+      <a href="https://www.instagram.com/nina.paleta.ec?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a><br>
+      <a href="https://www.facebook.com/ninapaleta?locale=es_LA" target="_blank">Facebook</a><br>
+      <a href="https://www.tiktok.com/@nina.paleta.ec?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a><br>
+      <a href="https://wa.me/593988272737" target="_blank">WhatsApp</a>
+    </div>
+
   </div>
 
-  <div class="redes-sociales">
-    <a href="https://www.instagram.com/ninapaleta" target="_blank">Instagram</a>
-    <a href="https://www.facebook.com/ninapaleta" target="_blank">Facebook</a>
-    <a href="https://wa.me/593999123456" target="_blank">WhatsApp</a>
-  </div>
-
-  <p class="marca">🐾 Hecho con amor artesanal. © Nina Paleta</p>
+  <p class="marca">🐾 Hecho con amor artesanal, energía solar y sabores únicos. © Nina Paleta</p>
 </footer>
 
 </body>

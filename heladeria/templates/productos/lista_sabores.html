@@ -1,20 +1,158 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h1>🍨 Sabores</h1>
-{% for categoria, sabores in sabores_por_categoria.items %}
-  <h2>{{ categoria }}</h2>
-  <div class="sabores">
-    {% for sabor in sabores %}
-      <div class="card">
-        {% if sabor.imagen %}
-          <img src="{{ sabor.imagen.url }}" alt="{{ sabor.nombre }}">
-        {% endif %}
-        <h3>{{ sabor.nombre }}</h3>
-        <p>${{ sabor.precio_pequeno }} – ${{ sabor.precio_grande }}</p>
-        {% if sabor.especial %}<p>🌟 Especial</p>{% endif %}
-        {% if sabor.temporada %}<p>🍃 Temporada</p>{% endif %}
-      </div>
-    {% endfor %}
+<h1>🍧 Nuestros Sabores Artesanales</h1>
+
+<!-- Sección de Personalización -->
+<section class="armar-tu-paleta">
+  <h2>🎨 Personaliza tu Paleta</h2>
+  <p>¡En Nina Paleta tú eres el artista! Arma tu paleta favorita en 4 pasos:</p>
+  <ol>
+    <li>Elige el sabor que más te guste entre nuestras más de 44 variedades.</li>
+    <li>Escoge la cobertura de chocolate: semiamargo o con turrón y nueces.</li>
+    <li>Cúbrela con chocolate negro o nuestra mezcla especial.</li>
+    <li>Añade 3 toppings a elección: maní, arándanos, grajeas, almendras, chocolates, chicles, moritas, marshmallow… ¡y más!</li>
+  </ol>
+  <p>También puedes pedir tu paleta <strong>solo con toppings</strong> o probar una edición especial como la <em>Paleta Boom</em> o <em>Paleta Cotte</em>.</p>
+  <p><strong>Precios desde:</strong> $1.75 hasta $3.50 según tu creación.</p>
+</section>
+
+<!-- Visualización del menú escaneado -->
+<section class="menu-visual">
+  <h2>📖 Mira Nuestro Menú Completo</h2>
+  <p>Explora nuestros sabores y ediciones especiales con este menú visual:</p>
+  <div class="menu-imagenes">
+    <img src="{% static 'img/menu_1.jpg' %}" alt="Menú - Página 3">
+    <img src="{% static 'img/menu_2.jpg' %}" alt="Menú - Página 4">
   </div>
-{% endfor %}
+</section>
+
+<!-- Listado por categorías -->
+<section class="categoria-sabor">
+  <h2>🍓 Paletas Frutales</h2>
+  <p>Paletas de agua con fruta natural</p>
+  <ul>
+    <li>Mora</li>
+    <li>Maracuyá</li>
+    <li>Guanábana</li>
+    <li>Tamarindo</li>
+    <li>Naranjilla</li>
+    <li>Guanamora</li>
+    <li>Limón Gummy Bear</li>
+    <li><em>De temporada:</em> Sunfo con frutos del bosque</li>
+  </ul>
+  <p><strong>Grande:</strong> $1.25 | <strong>Pequeña:</strong> $0.75</p>
+</section>
+
+<section class="categoria-sabor">
+  <h2>🌶️ Miche Mix</h2>
+  <p>Paletas con sal, maracuyá y limón</p>
+  <ul>
+    <li>Maracuyá con sal</li>
+    <li>Maracuyá y mango con sal</li>
+    <li>Chamoyada</li>
+  </ul>
+  <p><strong>Precio:</strong> $1.50</p>
+</section>
+
+<section class="categoria-sabor">
+  <h2>🥣 Paletas de Yogurt</h2>
+  <ul>
+    <li>Frutos del bosque</li>
+    <li>Kiwi</li>
+    <li><em>De temporada:</em> Mango</li>
+  </ul>
+  <p><strong>Grande:</strong> $1.25 | <strong>Pequeña:</strong> $0.75</p>
+</section>
+
+<section class="categoria-sabor">
+  <h2>🍸 Paletas con Licor</h2>
+  <ul>
+    <li>Caipirinha de fresa</li>
+    <li>Mojito</li>
+    <li><em>De temporada:</em> Crema de whisky</li>
+    <li><em>De temporada:</em> Pulparindo</li>
+  </ul>
+  <p><strong>Grande:</strong> $1.25 | <strong>Pequeña:</strong> $0.75</p>
+</section>
+
+<section class="categoria-sabor">
+  <h2>🍫 Paletas Cremosas</h2>
+  <ul>
+    <li>Coco</li>
+    <li>Chocomenta</li>
+    <li>Moca</li>
+    <li>Pistacho</li>
+    <li>Ron pasas</li>
+    <li>Nutella <span class="etiqueta especial">🌟 Especial</span></li>
+    <li>Oreo <span class="etiqueta especial">🌟 Especial</span></li>
+    <li>Chicle <span class="etiqueta especial">🌟 Especial</span></li>
+    <li>Ferrero <span class="etiqueta especial">🌟 Especial</span></li>
+    <li>Avellana <span class="etiqueta especial">🌟 Especial</span></li>
+    <li><em>De temporada:</em> Brownie, Maní y Caramelo</li>
+  </ul>
+  <p><strong>Grande:</strong> $1.25 | <strong>Pequeña:</strong> $0.75</p>
+</section>
+
+<section class="categoria-sabor">
+  <h2>🍰 Paletas de Postre</h2>
+  <ul>
+    <li>Cheesecake de Mora</li>
+    <li>Cheesecake de Maracuyá</li>
+    <li>Cheesecake de Mortiño</li>
+    <li>Cheesecake de Taxo</li>
+    <li>Pie de Limón</li>
+    <li>Mousse de Mandarina</li>
+  </ul>
+  <p><strong>Grande:</strong> $1.25 | <strong>Pequeña:</strong> $0.75</p>
+</section>
+
+<section class="categoria-sabor">
+  <h2>💪 Paletas Fit</h2>
+  <ul>
+    <li>Mora Stevia</li>
+    <li>Avellana Stevia</li>
+    <li><em>De temporada:</em> Piña y Mango Stevia</li>
+  </ul>
+  <p><strong>Precio:</strong> $1.50 – $1.75</p>
+</section>
+
+<section class="categoria-sabor">
+  <h2>🧂 Paleta de Sal</h2>
+  <p>Paleta + Chamoy + Tajín + Gomitas</p>
+  <p><strong>Precio:</strong> $2.50</p>
+</section>
+
+<hr>
+<section class="categoria-sabor mascotas">
+  <h2>🐶 Paletas Artesanales para Mascotas</h2>
+  <p>Paletas de Hígado con vegetales y avena refrescantes y seguras para tus peluditos (Libres de lácteos o azúcar)</p>
+
+  {% if mascopaletas %}
+    <ul>
+      {% for paleta in mascopaletas %}
+        <li>{{ paleta.nombre }} — {{ paleta.descripcion }} <strong>${{ paleta.precio }}</strong></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Estamos preparando nuevos sabores para tus amigos peludos 🐾</p>
+  {% endif %}
+</section>
+
+<section class="categoria-sabor mascotas">
+  <h2>🦴 Galletitas Saludables</h2>
+  <p>Hechas con avena (carne o pollo). Perfectas como premio o snack.</p>
+
+  {% if galletas_mascota %}
+    <ul>
+      {% for galleta in galletas_mascota %}
+        <li>{{ galleta.nombre }} — {{ galleta.descripcion }} <strong>${{ galleta.precio }}</strong></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aún no hay galletitas en vitrina, pero pronto llegarán 🐶🍪</p>
+  {% endif %}
+</section>
+
 {% endblock %}

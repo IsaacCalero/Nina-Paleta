@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Categorías posibles para sabores
 CATEGORIAS_SABOR = [
@@ -137,6 +139,21 @@ class Licor(models.Model):
 
     def __str__(self):
         return f"{self.nombre} ({self.tipo})"
+
+
+class Pedido(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    creado_en = models.DateTimeField(auto_now_add=True)
+    activo = models.BooleanField(default=True)
+
+
+class ItemPedido(models.Model):
+    pedido = models.ForeignKey(Pedido, related_name='items', on_delete=models.CASCADE)
+    sabor = models.ForeignKey(Sabor, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+    tamaño = models.CharField(max_length=10, choices=[('pequeño', 'Pequeño'), ('grande', 'Grande')])
+
+
 
 
 

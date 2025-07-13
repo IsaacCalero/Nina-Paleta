@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }, index * 100);
   });
 
-  // 2. Mostrar detalles ocultos al pasar el mouse (CSS lo activa)
-  // Solo requiere que tengas <p class="detalle">...</p> en cada .card
+  // 2. Mostrar detalles ocultos al pasar el mouse
+  // (CSS lo activa automáticamente con :hover sobre .card y .detalle)
 
   // 3. Botón para filtrar productos especiales
   const filtroBtn = document.getElementById("filtrar-especiales");
@@ -40,4 +40,17 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("¿Segur@ que tu perrito aprueba este sabor? 🐶💖");
     });
   });
+
+  // 6. Carrusel automático en la página de inicio
+  const carruselImagenes = document.querySelectorAll(".imagen-carrusel");
+  let indexActual = 0;
+  const intervalo = 5000; // 4 segundos entre imágenes
+
+  if (carruselImagenes.length > 0) {
+    setInterval(() => {
+      carruselImagenes[indexActual].classList.remove("active");
+      indexActual = (indexActual + 1) % carruselImagenes.length;
+      carruselImagenes[indexActual].classList.add("active");
+    }, intervalo);
+  }
 });

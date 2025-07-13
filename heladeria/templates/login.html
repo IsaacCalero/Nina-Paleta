@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="login-artesanal">
+  <h2>🔐 Inicia sesión para saborear tu carrito</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="campo-form">
+      <label for="id_username">Usuario:</label>
+      {{ form.username }}
+    </div>
+
+    <div class="campo-form">
+      <label for="id_password">Contraseña:</label>
+      {{ form.password }}
+    </div>
+
+    <button type="submit" class="btn-login">Entrar 🍧</button>
+  </form>
+
+  <p class="texto-info">¿Aún no tienes cuenta? ¡Pronto podrás registrarte y crear tu propia receta personalizada! 🍓</p>
+</section>
+{% endblock %}
