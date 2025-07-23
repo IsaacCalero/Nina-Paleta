@@ -13,30 +13,50 @@
   </div>
 </section>
 
-<!-- Catálogo de picaditas -->
+<!-- Catálogo de picaditas (tarjetas escritas manualmente) -->
 <section class="grid-picaditas">
   <div class="tarjeta-picadita">
     <h2>🌭 Choripapa</h2>
     <p>Porción de papas con chorizo en rodajas, acompañada de chimichurri y pico de gallo.</p>
     <p class="precio">$4.50</p>
+
+    <form method="POST" action="{% url 'agregar_al_carrito' 'productos' 'picadita' 1 %}">
+      {% csrf_token %}
+      <button type="submit" class="btn-agregar">Agregar</button>
+    </form>
   </div>
 
   <div class="tarjeta-picadita">
     <h2>🧀 Nachos con Queso</h2>
     <p>Totopos mexicanos con queso mozzarella derretido, salsa cheddar y/o guacamole de la casa.</p>
     <p class="precio">$5.40</p>
+
+    <form method="POST" action="{% url 'agregar_al_carrito' 'productos' 'picadita' 2 %}">
+      {% csrf_token %}
+      <button type="submit" class="btn-agregar">Agregar</button>
+    </form>
   </div>
 
   <div class="tarjeta-picadita">
     <h2>🌶️ Nachos con Chorizo</h2>
     <p>Totopos mexicanos con queso mozzarella derretido, porción de chorizo, acompañado de guacamole y pico de gallo.</p>
     <p class="precio">$6.80</p>
+
+    <form method="POST" action="{% url 'agregar_al_carrito' 'productos' 'picadita' 3 %}">
+      {% csrf_token %}
+      <button type="submit" class="btn-agregar">Agregar</button>
+    </form>
   </div>
 
   <div class="tarjeta-picadita">
     <h2>🇲🇽 Copa Nina Mex</h2>
     <p>Totopos con frijol cocinado, queso mozzarella derretido, guacamole, porción de castilla, decorado con pico de gallo. Ideal para 3 personas.</p>
     <p class="precio">$8.80</p>
+
+    <form method="POST" action="{% url 'agregar_al_carrito' 'productos' 'picadita' 4 %}">
+      {% csrf_token %}
+      <button type="submit" class="btn-agregar">Agregar</button>
+    </form>
   </div>
 </section>
 {% endblock %}

@@ -5,7 +5,7 @@ from .models import (
     Sabor, Topping, Paleta,
     Mascopaleta, GalletaMascota,
     Sanduche, Barbacoa, Picadita,
-    Licor
+    Licor, Adicional
 )
 
 @admin.register(Sabor)
@@ -56,3 +56,4 @@ class LicorAdmin(admin.ModelAdmin):
     list_filter = ('tipo', 'disponible')
     search_fields = ('nombre',)
 
+admin.site.register(Adicional)

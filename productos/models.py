@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 
 # Categorías posibles para sabores
@@ -147,11 +149,27 @@ class Pedido(models.Model):
     activo = models.BooleanField(default=True)
 
 
+
+
 class ItemPedido(models.Model):
     pedido = models.ForeignKey(Pedido, related_name='items', on_delete=models.CASCADE)
-    sabor = models.ForeignKey(Sabor, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    producto = GenericForeignKey('content_type', 'object_id')
+
     cantidad = models.PositiveIntegerField(default=1)
-    tamaño = models.CharField(max_length=10, choices=[('pequeño', 'Pequeño'), ('grande', 'Grande')])
+
+
+class Adicional(models.Model):
+    nombre = models.CharField(max_length=100)
+    precio = models.DecimalField(max_digits=6, decimal_places=2)
+    descripcion = models.TextField(blank=True, null=True)
+    disponible = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.nombre
+
+
 
 
 

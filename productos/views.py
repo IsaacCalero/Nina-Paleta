@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
+from django.contrib.contenttypes.models import ContentType
+from .models import Picadita
+from django.http import HttpResponseBadRequest
+from django.contrib import messages
 
 def registro_view(request):
     if request.method == 'POST':
@@ -51,11 +55,12 @@ def lista_galletas_mascota(request):
         'galletas': galletas
     })
 
+
 def lista_picaditas(request):
-    picaditas = Picadita.objects.filter(disponible=True)
-    return render(request, 'productos/lista_picaditas.html', {
-        'picaditas': picaditas
-    })
+    productos = Picadita.objects.filter(disponible=True)
+    return render(request, 'productos/lista_picaditas.html', {'productos': productos})
+
+
 
 def lista_sanduches(request):
     sanduches = Sanduche.objects.filter(disponible=True)
@@ -71,38 +76,90 @@ def lista_licores(request):
     })
 
 @login_required
-def agregar_al_carrito(request):
-    if request.method == 'POST':
-        sabor_id = request.POST['sabor_id']
-        tamano = request.POST['tamano']
-        cantidad = int(request.POST['cantidad'])
+def agregar_al_carrito(request, app_label, model_name, producto_id):
+    producto_type = ContentType.objects.get(app_label=app_label, model=model_name)
+    carrito = request.session.get('carrito', {})
 
-        sabor = Sabor.objects.get(id=sabor_id)
-        pedido, _ = Pedido.objects.get_or_create(usuario=request.user, activo=True)
-        ItemPedido.objects.create(pedido=pedido, sabor=sabor, tamaño=tamano, cantidad=cantidad)
+    key = f"{producto_type.id}:{producto_id}"
+    carrito[key] = carrito.get(key, 0) + 1
+    request.session['carrito'] = carrito
 
-        return redirect('sabores')
+    print("Contenido del carrito:", carrito)  # ← Este print te dice si se guarda
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 @login_required
 def ver_carrito(request):
-    try:
-        # Busca el pedido activo del usuario
-        pedido = Pedido.objects.get(usuario=request.user, activo=True)
-        items = pedido.items.select_related('sabor')  # optimiza la carga
-    except Pedido.DoesNotExist:
-        pedido = None
-        items = []
+    carrito = request.session.get('carrito', {})
+    items = []
+    total = 0
 
-    # Calcula el total
-    total = sum(item.sabor.precio_pequeno if item.tamaño == 'pequeño' else item.sabor.precio_grande for item in items)
+    for key, cantidad in carrito.items():
+        try:
+            content_type_id, object_id = map(int, key.split(':'))
+            content_type = ContentType.objects.get_for_id(content_type_id)
+            modelo = content_type.model_class()
+            producto = modelo.objects.get(id=object_id)
+
+            print("Producto:", producto.nombre)
+            print("Precio:", producto.precio)  # ← ¿Esto lanza error?
+
+            items.append({
+                'producto': producto,
+                'cantidad': cantidad,
+                'subtotal': producto.precio * cantidad,
+                'model_name': producto.__class__.__name__.lower(),
+            })
+
+            total += items[-1]['subtotal']
+        except Exception as e:
+            print(f"Error al reconstruir item del carrito: {e}")
+            continue
 
     context = {
-        'pedido': pedido,
         'items': items,
         'total': total,
     }
-
     return render(request, 'carrito.html', context)
+
+
+@login_required
+def agregar_al_carrito(request, app_label, model_name, producto_id):
+    try:
+        producto_type = ContentType.objects.get(app_label=app_label, model=model_name)
+        modelo = producto_type.model_class()
+
+        producto = modelo.objects.filter(id=producto_id, disponible=True).first()
+        if not producto:
+            return HttpResponseBadRequest("El producto solicitado no existe o no está disponible.")
+
+        carrito = request.session.get('carrito', {})
+        key = f"{producto_type.id}:{producto_id}"
+        carrito[key] = carrito.get(key, 0) + 1
+        request.session['carrito'] = carrito
+
+        messages.success(request, f"¡{producto.nombre} agregado al carrito!")
+
+        print("Producto válido. Carrito actualizado:", carrito)
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+
+    except ContentType.DoesNotExist:
+        return HttpResponseBadRequest("Tipo de producto no válido.")
+    
+@login_required
+def eliminar_del_carrito(request, app_label, model_name, producto_id):
+    producto_type = ContentType.objects.get(app_label=app_label, model=model_name)
+    key = f"{producto_type.id}:{producto_id}"
+    carrito = request.session.get('carrito', {})
+
+    if key in carrito:
+        carrito.pop(key)
+        request.session['carrito'] = carrito
+        from django.contrib import messages
+        messages.success(request, "Producto eliminado del carrito.")
+
+    return redirect('ver_carrito')
+
 
 
 def registro_view(request):

@@ -1,55 +1,33 @@
 {% extends 'base.html' %}
-{% load static %}
-
 {% block content %}
-<h1>🛍️ Tu Carrito de Paletas</h1>
+<h1>🛒 Tu carrito artesanal</h1>
 
 {% if items %}
-  <table class="tabla-carrito">
-    <thead>
-      <tr>
-        <th>Sabor</th>
-        <th>Tamaño</th>
-        <th>Cantidad</th>
-        <th>Precio unitario</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in items %}
-        <tr>
-          <td>{{ item.sabor.nombre }}</td>
-          <td>{{ item.tamaño|capfirst }}</td>
-          <td>{{ item.cantidad }}</td>
-          <td>
-            {% if item.tamaño == "pequeño" %}
-              ${{ item.sabor.precio_pequeno }}
-            {% else %}
-              ${{ item.sabor.precio_grande }}
-            {% endif %}
-          </td>
-          <td>
-            {% if item.tamaño == "pequeño" %}
-              ${{ item.sabor.precio_pequeno|floatformat:2|add:item.cantidad|floatformat:2 }}
-            {% else %}
-              ${{ item.sabor.precio_grande|floatformat:2|add:item.cantidad|floatformat:2 }}
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <section class="carrito-lista">
+    {% for item in items %}
+    <div class="item-carrito">
+      <h3>{{ item.producto.nombre }}</h3>
+      {% if item.producto.descripcion %}
+        <p>{{ item.producto.descripcion }}</p>
+      {% endif %}
+      <p>Precio unitario: ${{ item.producto.precio }}</p>
+      <p>Cantidad: {{ item.cantidad }}</p>
+      <p>Subtotal: ${{ item.subtotal|floatformat:2 }}</p>
 
-  <div class="total-carrito">
-    <strong>Total del pedido:</strong> ${{ total|floatformat:2 }}
-  </div>
+      <form method="POST" action="{% url 'eliminar_del_carrito' 'productos' item.model_name item.producto.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn-eliminar">Eliminar</button>
+      </form>
 
-  <div class="acciones-carrito">
-    <a href="{% url 'confirmar_pedido' %}" class="btn-confirmar">Confirmar pedido</a>
-    <a href="{% url 'lista_sabores' %}" class="btn-seguir">Seguir comprando</a>
-  </div>
+    </div>
+
+      
+    {% endfor %}
+    <div class="carrito-total">
+      <h2>Total: ${{ total|floatformat:2 }}</h2>
+    </div>
+  </section>
 {% else %}
-  <p>Tu carrito está vacío por ahora. 🍧</p>
-  <a href="{% url 'lista_sabores' %}" class="btn-seguir">Explorar sabores</a>
+  <p>Tu carrito está vacío 💨 ¡Agrega algo delicioso!</p>
 {% endif %}
 {% endblock %}
