@@ -6,6 +6,8 @@ from django.contrib.contenttypes.models import ContentType
 from .models import Picadita
 from django.http import HttpResponseBadRequest
 from django.contrib import messages
+from .models import Sabor, Mascopaleta
+from productos.models import Sabor
 
 def registro_view(request):
     if request.method == 'POST':
@@ -30,24 +32,23 @@ def inicio(request):
     return render(request, 'productos/inicio.html')
 
 
-from .models import Sabor, Mascopaleta
+
+
 
 def lista_sabores(request):
     sabores = Sabor.objects.filter(disponible=True).order_by('categoria', 'nombre')
-    mascopaletas = Mascopaleta.objects.filter(disponible=True).order_by('nombre')
-
-    # Agrupar sabores por categoría
-    sabores_por_categoria = {}
-    for sabor in sabores:
-        categoria = sabor.categoria
-        if categoria not in sabores_por_categoria:
-            sabores_por_categoria[categoria] = []
-        sabores_por_categoria[categoria].append(sabor)
-
+    categorias = [
+        ('miche_mix', '🥭 Miche Mix'),
+        ('yogurt', '🍓 Paletas de Yogurt'),
+        ('licor', '🍹 Paletas con Licor')
+    ]
     return render(request, 'productos/lista_sabores.html', {
-        'sabores_por_categoria': sabores_por_categoria,
-        'mascopaletas': mascopaletas
+        'sabores': sabores,
+        'categorias': categorias
     })
+
+
+
 
 def lista_galletas_mascota(request):
     galletas = GalletaMascota.objects.all()
@@ -78,15 +79,22 @@ def lista_licores(request):
 @login_required
 def agregar_al_carrito(request, app_label, model_name, producto_id):
     producto_type = ContentType.objects.get(app_label=app_label, model=model_name)
+    
     carrito = request.session.get('carrito', {})
 
-    key = f"{producto_type.id}:{producto_id}"
+    # 👇 Captura el tamaño desde el formulario (por defecto: 'pequeno')
+    tamano = request.POST.get('tamano', 'pequeno')
+
+    # 👇 Crea una clave única incluyendo el tamaño
+    key = f"{producto_type.id}:{producto_id}:{tamano}"
     carrito[key] = carrito.get(key, 0) + 1
+
     request.session['carrito'] = carrito
 
-    print("Contenido del carrito:", carrito)  # ← Este print te dice si se guarda
+    print("Contenido del carrito:", carrito)
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
 
 @login_required
 def ver_carrito(request):
@@ -96,22 +104,31 @@ def ver_carrito(request):
 
     for key, cantidad in carrito.items():
         try:
-            content_type_id, object_id = map(int, key.split(':'))
-            content_type = ContentType.objects.get_for_id(content_type_id)
-            modelo = content_type.model_class()
-            producto = modelo.objects.get(id=object_id)
+            # 👇 Captura content_type_id, producto_id y tamaño desde la clave
+            content_type_id, object_id, tamano = key.split(':')
 
-            print("Producto:", producto.nombre)
-            print("Precio:", producto.precio)  # ← ¿Esto lanza error?
+            content_type = ContentType.objects.get_for_id(int(content_type_id))
+            modelo = content_type.model_class()
+            producto = modelo.objects.get(id=int(object_id))
+
+            # 👇 Cálculo de precio según tamaño
+            if tamano == 'grande':
+                precio_unitario = producto.precio_grande
+            else:
+                precio_unitario = producto.precio_pequeno
+
+            subtotal = precio_unitario * cantidad
 
             items.append({
                 'producto': producto,
                 'cantidad': cantidad,
-                'subtotal': producto.precio * cantidad,
+                'tamano': tamano.capitalize(),
+                'precio_unitario': precio_unitario,
+                'subtotal': subtotal,
                 'model_name': producto.__class__.__name__.lower(),
             })
 
-            total += items[-1]['subtotal']
+            total += subtotal
         except Exception as e:
             print(f"Error al reconstruir item del carrito: {e}")
             continue
@@ -121,6 +138,7 @@ def ver_carrito(request):
         'total': total,
     }
     return render(request, 'carrito.html', context)
+
 
 
 @login_required

@@ -38,19 +38,29 @@ header {
 
 nav {
   margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 2em;               /* separa más los enlaces */
 }
 
 nav a {
   color: white;
-  margin: 0 1em;
+  font-size: 1.3rem;      /* agranda el texto */
+  padding: 12px 20px;     /* más área clickeable */
+  font-weight: 600;
+  background-color: #ff85a2;  /* color suave de fondo */
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: bold;
+  transition: all 0.2s ease;
 }
 
 nav a:hover {
-  color: var(--color-acento);
-  text-decoration: underline;
+  color: #fff;
+  background-color: var(--color-acento); /* tono de acento emocional */
+  transform: scale(1.05);
+  text-decoration: none;
 }
+
 
 /* Tarjetas de producto */
 .card {
@@ -134,7 +144,7 @@ h1, h2, h3 {
 }
 
 .logo-global {
-  width: 200px !important;
+  width: 260px !important;
   height: auto;
 }
 
@@ -1161,4 +1171,32 @@ h1 {
   0%   { opacity: 1; }
   80%  { opacity: 1; }
   100% { opacity: 0; display: none; }
+}
+
+.grid-sabores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-sabor {
+  background: #fffaf5;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.badge-especial {
+  background: gold;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+
+.badge-temporada {
+  background: #ffc0cb;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 0.9em;
 }

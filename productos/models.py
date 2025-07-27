@@ -18,17 +18,23 @@ CATEGORIAS_SABOR = [
 
 class Sabor(models.Model):
     nombre = models.CharField(max_length=100)
-    categoria = models.CharField(max_length=50, choices=CATEGORIAS_SABOR)
-    descripcion = models.TextField(blank=True)
-    precio_grande = models.DecimalField(max_digits=5, decimal_places=2)
-    precio_pequeno = models.DecimalField(max_digits=5, decimal_places=2)
+    categoria = models.CharField(max_length=100, choices=[
+        ('miche_mix', 'Miche Mix'),
+        ('yogurt', 'Paletas de Yogurt'),
+        ('licor', 'Paletas con Licor'),
+        ('frutales', 'Paletas Frutales')
+    ])
+    descripcion = models.TextField(blank=True, null=True)
+    precio_pequeno = models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    precio_grande = models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    disponible = models.BooleanField(default=True)
     especial = models.BooleanField(default=False)
     temporada = models.BooleanField(default=False)
-    disponible = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='sabores/', blank=True, null=True)
 
     def __str__(self):
         return self.nombre
+
+
 
 class Topping(models.Model):
     nombre = models.CharField(max_length=100)
@@ -153,10 +159,9 @@ class Pedido(models.Model):
 
 class ItemPedido(models.Model):
     pedido = models.ForeignKey(Pedido, related_name='items', on_delete=models.CASCADE)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, blank=True)
     object_id = models.PositiveIntegerField()
     producto = GenericForeignKey('content_type', 'object_id')
-
     cantidad = models.PositiveIntegerField(default=1)
 
 

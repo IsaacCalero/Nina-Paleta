@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>🍡 Paletas Artesanales</h1>
+
+<div class="menu-imagenes">
+  <img src="{% static 'img/menu_1.jpg' %}" alt="Menú de sabores 1" class="menu-img">
+  <img src="{% static 'img/menu_2.jpg' %}" alt="Menú de sabores 2" class="menu-img">
+</div>
+
+{% for categoria, titulo in categorias %}
+  <section class="seccion-sabores">
+    <h2>{{ titulo }}</h2>
+    <div class="grid-sabores">
+      {% for sabor in sabores %}
+        {% if sabor.categoria == categoria %}
+          <div class="tarjeta-sabor">
+            <h3>{{ sabor.nombre }}</h3>
+
+            {% if sabor.especial %}
+              <span class="badge-especial">⭐ Especial</span>
+            {% endif %}
+            {% if sabor.temporada %}
+              <span class="badge-temporada">🌸 Temporada</span>
+            {% endif %}
+
+            {% if sabor.descripcion %}
+              <p class="descripcion">{{ sabor.descripcion }}</p>
+            {% endif %}
+
+            <p class="precio">
+              🍥 Pequeño: ${{ sabor.precio_pequeno }}<br>
+              🍨 Grande: ${{ sabor.precio_grande }}
+            </p>
+
+            <form method="POST" action="{% url 'agregar_al_carrito' 'productos' 'sabor' sabor.id %}">
+              {% csrf_token %}
+              <label for="tamano-{{ sabor.id }}">Tamaño:</label>
+              <select name="tamano" id="tamano-{{ sabor.id }}" class="selector-tamano">
+                <option value="pequeno">🍥 Pequeño</option>
+                <option value="grande">🍨 Grande</option>
+              </select>
+
+              <button type="submit" class="btn-agregar">Agregar al carrito</button>
+            </form>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endfor %}
+{% endblock %}

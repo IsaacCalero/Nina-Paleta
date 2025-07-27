@@ -1,0 +1,1164 @@
+/* Paleta de colores */
+:root {
+  --color-fondo: #FDF6EC;
+  --color-principal: #FF5C98;
+  --color-secundario: #3973B8;
+  --color-acento: #3A97E8;
+  --color-texto: #222222;
+}
+
+/* Estructura base */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+main {
+  flex: 1;
+}
+
+/* Encabezado y navegación */
+header {
+  position: relative;
+  background-color: var(--color-principal);
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+
+nav {
+  margin-top: 1em;
+}
+
+nav a {
+  color: white;
+  margin: 0 1em;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--color-acento);
+  text-decoration: underline;
+}
+
+/* Tarjetas de producto */
+.card {
+  background-color: white;
+  border: 2px solid var(--color-acento);
+  border-radius: 12px;
+  padding: 1em;
+  margin: 1em;
+  box-shadow: 2px 2px 8px rgba(58, 151, 232, 0.2);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Texto y títulos */
+h1, h2, h3 {
+  color: var(--color-principal);
+}
+
+/* Footer */
+.pie-pagina {
+  background-color: #fce4ec;
+  padding: 40px 20px 20px 20px;
+  color: #6a1b9a;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-distribucion {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+.footer-columna {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-columna h4 {
+  margin-bottom: 8px;
+  font-size: 1.1em;
+  color: #ad1457;
+}
+
+.footer-columna p,
+.footer-columna a {
+  font-size: 0.95em;
+  color: #6a1b9a;
+  text-decoration: none;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.footer-columna a:hover {
+  text-decoration: underline;
+}
+
+.marca {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #8e24aa;
+}
+
+/* Logo */
+.logo-container {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.logo-global {
+  width: 200px !important;
+  height: auto;
+}
+
+.logo-global:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Sección: Inicio Banner */
+.inicio-banner {
+  text-align: center;
+  background-color: #fce4ec;
+  padding: 40px 20px;
+  color: #6a1b9a;
+}
+
+/* Sección: Historia Niña */
+.historia-nina {
+  text-align: center;
+  padding: 30px;
+  background-color: #fffde7;
+  color: #6d4c41;
+}
+
+/* Sección: Productos Destacados */
+.productos-destacados {
+  background-color: #e3f2fd;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.card-producto {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.card-producto img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.precio {
+  color: #d81b60;
+  font-weight: bold;
+}
+
+.btn-comprar {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #f8bbd0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #6a1b9a;
+  font-weight: bold;
+}
+
+/* Carrusel */
+.carrusel-nina {
+  width: 100%;
+  max-width: 700px;
+  height: 400px; /* altura fija definitiva */
+  margin: 40px auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+.carrusel-imagenes {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.imagen-carrusel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.imagen-carrusel.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Sección: ¿Quiénes Somos? */
+.quienes-somos {
+  background-color: #fff3e0;
+  padding: 40px 20px;
+  text-align: center;
+  color: #6a1b9a;
+}
+
+.quienes-somos h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #ad1457;
+}
+
+.quienes-somos p {
+  font-size: 1em;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 15px auto;
+}
+
+/* Sección: Sabores Estrella */
+.sabores-destacados {
+  background-color: #fce4ec;
+  padding: 40px 20px;
+  text-align: center;
+  color: #4a148c;
+}
+
+.sabores-destacados h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #880e4f;
+}
+
+.grid-sabores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.tarjeta-sabor {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-sabor:hover {
+  transform: scale(1.03);
+}
+
+.tarjeta-sabor img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.tarjeta-sabor h3 {
+  color: #6a1b9a;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+}
+
+.tarjeta-sabor p {
+  font-size: 0.95em;
+  color: #424242;
+}
+
+/* Sección: Historia de Karla */
+.historia-karla {
+  background-color: #ede7f6;
+  padding: 40px 20px;
+  text-align: center;
+  color: #4527a0;
+}
+
+.historia-karla h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #5e35b1;
+}
+
+.historia-karla p {
+  font-size: 1em;
+  line-height: 1.6;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+/* Sección: Personaliza tu Paleta */
+.armar-tu-paleta {
+  background-color: #fff8e1;
+  padding: 35px 20px;
+  margin: 0 auto 40px auto;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  color: #4e342e;
+}
+
+.armar-tu-paleta h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #bf360c;
+}
+
+.armar-tu-paleta ol {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.armar-tu-paleta li {
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+
+.armar-tu-paleta p {
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+/* Sección: Categorías de sabores */
+.categoria-sabor {
+  background-color: #fce4ec;
+  padding: 30px 20px;
+  margin: 30px auto;
+  border-radius: 12px;
+  max-width: 800px;
+  color: #4a148c;
+}
+
+.categoria-sabor h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #ad1457;
+}
+
+.categoria-sabor p {
+  font-size: 0.95em;
+  margin-bottom: 10px;
+}
+
+.categoria-sabor ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+
+.categoria-sabor ul li {
+  padding: 4px 0;
+  font-size: 0.95em;
+}
+
+/* Componente: Etiquetas visuales */
+.etiqueta {
+  display: inline-block;
+  padding: 2px 8px;
+  margin-left: 8px;
+  border-radius: 8px;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: white;
+}
+
+.etiqueta.especial {
+  background-color: #ff4081;
+}
+
+/* Sección: Menú Visual */
+.menu-visual {
+  background-color: #fff3f1;
+  padding: 40px 20px;
+  text-align: center;
+  color: #6a1b9a;
+}
+
+.menu-visual h2 {
+  font-size: 1.6em;
+  margin-bottom: 15px;
+}
+
+.menu-visual p {
+  font-size: 0.95em;
+  margin-bottom: 20px;
+}
+
+.menu-imagenes {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; /* permite que se acomoden si el espacio es pequeño */
+}
+
+.menu-imagenes img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+}
+
+.tabla-carrito {
+  width: 100%;
+  max-width: 800px;
+  margin: 30px auto;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  background-color: #ffffff;
+}
+
+.tabla-carrito th,
+.tabla-carrito td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  font-size: 0.95em;
+}
+
+.tabla-carrito th {
+  background-color: #fce4ec;
+  color: #6a1b9a;
+  font-weight: bold;
+}
+
+/* Total del carrito */
+.total-carrito {
+  text-align: right;
+  margin: 20px auto;
+  max-width: 800px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #4a148c;
+}
+
+/* Botones de acción */
+.acciones-carrito {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.btn-confirmar,
+.btn-seguir {
+  padding: 10px 20px;
+  background-color: #ad1457;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-confirmar:hover,
+.btn-seguir:hover {
+  background-color: #880e4f;
+}
+
+.login-artesanal {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #fff3e0;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.06);
+  text-align: center;
+  color: #4e342e;
+}
+
+.login-artesanal h2 {
+  font-size: 1.6em;
+  margin-bottom: 25px;
+  color: #bf360c;
+}
+
+.campo-form {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.campo-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.campo-form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.btn-login {
+  background-color: #d81b60;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #ad1457;
+}
+
+.texto-info {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #6d4c41;
+}
+
+
+.user-menu {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.bloque-usuario {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bienvenida {
+  font-weight: bold;
+  color: #47c1d6;
+}
+
+.user-session {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-sesion {
+  background-color: #f8bbd0;
+  color: #4e342e;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95em;
+  transition: background-color 0.3s ease;
+}
+
+.btn-sesion:hover {
+  background-color: #f48fb1;
+}
+
+/* Grid de Tarjetas de Sabores */
+.tarjetas-sabores {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  padding: 0 20px;
+}
+
+.tarjeta-sabor {
+  background-color: #fff3e0;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-sabor:hover {
+  transform: scale(1.03);
+}
+
+.tarjeta-sabor img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.categoria-sabor.mascotas {
+  background-color: #fce4ec;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 40px;
+  color: #4e342e;
+}
+
+.categoria-sabor.mascotas h2 {
+  color: #ad1457;
+}
+
+.menu-picaditas {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.menu-picaditas h2 {
+  font-size: 1.5em;
+  color: #d84315;
+  margin-bottom: 10px;
+}
+
+.menu-picaditas p {
+  margin-bottom: 16px;
+  font-style: italic;
+  color: #6d4c41;
+}
+
+.menu-img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-img {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.06);
+}
+
+/* Grid de Picaditas */
+.grid-picaditas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.tarjeta-picadita {
+  background-color: #fffbe6;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-picadita:hover {
+  transform: scale(1.02);
+}
+
+.tarjeta-picadita h2 {
+  margin-bottom: 10px;
+  color: #d84315;
+}
+
+.tarjeta-picadita .precio {
+  font-weight: bold;
+  color: #4e342e;
+  margin-top: 10px;
+}
+
+.menu-sanduches {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.menu-sanduches h2 {
+  font-size: 1.6em;
+  color: #bf360c;
+  margin-bottom: 10px;
+}
+
+.menu-sanduches p {
+  margin-bottom: 16px;
+  font-style: italic;
+  color: #4e342e;
+}
+
+.menu-img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-img {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Tarjetas de productos */
+.grid-sanduches,
+.grid-barbacoa,
+.grid-adicionales {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.tarjeta-sanduche,
+.tarjeta-barbacoa,
+.tarjeta-adicional {
+  background-color: #fffbe6;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-sanduche:hover,
+.tarjeta-barbacoa:hover,
+.tarjeta-adicional:hover {
+  transform: scale(1.02);
+}
+
+.tarjeta-sanduche h3,
+.tarjeta-barbacoa h3,
+.tarjeta-adicional h3 {
+  margin-bottom: 8px;
+  color: #d84315;
+  font-size: 1.2em;
+}
+
+.tarjeta-sanduche p,
+.tarjeta-barbacoa p,
+.tarjeta-adicional p {
+  font-size: 0.95em;
+  color: #5d4037;
+}
+
+.precio {
+  font-weight: bold;
+  color: #4e342e;
+  margin-top: 10px;
+}
+
+/* Encabezados de sección */
+h2 {
+  margin-top: 40px;
+  font-size: 1.4em;
+  color: #6a1b9a;
+  border-bottom: 2px solid #e1bee7;
+  padding-bottom: 6px;
+}
+
+.galeria-bebidas {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.grid-menu-bebidas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.grid-menu-bebidas img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+}
+
+.grid-bebidas {
+  background-color: #f3e5f5;
+  padding: 24px;
+  border-radius: 12px;
+  margin: 40px 0;
+}
+
+.grid-bebidas h2 {
+  color: #6a1b9a;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #ce93d8;
+  padding-bottom: 6px;
+}
+
+.grid-bebidas ul {
+  list-style-type: "🍹 ";
+  padding-left: 20px;
+  color: #4e342e;
+  line-height: 1.6;
+}
+
+/* --- Encabezado principal --- */
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #6a1b9a;
+  text-align: center;
+}
+
+/* --- Galería de imágenes del menú --- */
+.galeria-bebidas {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.galeria-bebidas h2 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  color: #d84315;
+}
+
+.grid-menu-bebidas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.grid-menu-bebidas img {
+  width: 100%;
+  max-width: 550px; /* más grande */
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Secciones de bebidas --- */
+.grid-bebidas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.grid-bebidas h2 {
+  grid-column: 1 / -1;
+  font-size: 1.4em;
+  color: #6a1b9a;
+  border-bottom: 2px solid #ce93d8;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+/* --- Tarjetas individuales --- */
+.tarjeta-bebida {
+  background-color: #fff3e0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-bebida:hover {
+  transform: scale(1.02);
+}
+
+.tarjeta-bebida h3 {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  color: #6a1b9a;
+}
+
+.tarjeta-bebida p {
+  font-size: 0.95em;
+  color: #4e342e;
+  margin: 6px 0;
+}
+
+.precio {
+  font-weight: bold;
+  color: #4e342e;
+  margin-top: 10px;
+}
+
+/* --- Responsive ajustado --- */
+@media screen and (max-width: 600px) {
+  .grid-menu-bebidas {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-bebidas {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cerrar-sesion-boton {
+  display: inline-block;
+  background-color: #f48fb1; /* Rosa similar a btn-sesion */
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.cerrar-sesion-boton:hover {
+  background-color: #ec407a;
+}
+
+.carrito-boton {
+  display: inline-flex;
+  align-items: center;
+  background-color: #81d4fa; /* Celeste artesanal */
+  color: #4e342e;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.carrito-boton:hover {
+  background-color: #4fc3f7;
+}
+
+.icono-carrito {
+  width: 22px;
+  height: auto;
+  margin-right: 8px;
+}
+
+.carrito-boton {
+  display: inline-flex;
+  align-items: center;
+  background-color: #81d4fa;
+  color: #4e342e;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.carrito-boton:hover {
+  background-color: #4fc3f7;
+}
+
+.icono-carrito {
+  width: 20px;
+  margin-right: 6px;
+}
+
+/* Botón Cerrar Sesión */
+.cerrar-sesion-boton {
+  background-color: #f48fb1;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cerrar-sesion-boton:hover {
+  background-color: #ec407a;
+}
+
+.titulo-menu {
+  border: none;
+  border-bottom: none;
+  outline: none;
+  box-shadow: none;
+}
+
+
+.menu-enlaces-libre {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.tarjeta-flotante {
+  background-color: #fff;
+  color: #4e342e;
+  padding: 16px 22px;
+  border-radius: 14px;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.tarjeta-flotante:hover {
+  transform: scale(1.05);
+  background-color: #ffe0e0;
+}
+
+.icono-boton {
+  width: 48px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+
+/* Animación suave */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.btn-agregar {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-agregar:hover {
+  background-color: #388e3c;
+}
+
+
+.carrito-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* Tarjetas de cada producto */
+.item-carrito {
+  background-color: #fff7ed;
+  border: 1px solid #ffe0b2;
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+}
+
+/* Título de cada producto */
+.item-carrito h3 {
+  margin: 0 0 8px;
+  color: #ff7043;
+  font-size: 1.2rem;
+}
+
+/* Texto descriptivo */
+.item-carrito p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+/* Total final del carrito */
+.carrito-total {
+  margin-top: 32px;
+  text-align: center;
+  background-color: #ffccbc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Estilo del total $ */
+.carrito-total h2 {
+  color: #d84315;
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+/* Botón de finalizar pedido */
+.btn-finalizar {
+  display: inline-block;
+  margin-top: 12px;
+  background-color: #ff7043;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-finalizar:hover {
+  background-color: #e64a19;
+}
+
+/* Botón eliminar producto */
+.btn-eliminar {
+  background-color: #d32f2f;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05);
+}
+
+/* Mensajes de alerta (producto agregado) */
+.alert-container {
+  position: relative;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  z-index: 999;
+}
+
+.alert {
+  background-color: #d9fdd3;
+  color: #256029;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  animation: fadeOut 4s ease forwards;
+}
+
+@keyframes fadeOut {
+  0%   { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
